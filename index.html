@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreativeiDEA - Imagine • Create • Inspire | Web Design & Development Sri Lanka</title>
+    <meta name="description" content="Creative Idea helps Sri Lankan businesses go from a spark of an idea to a fast, modern website. Web design, development, SEO, and more.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a',
+                        secondary: '#f97316',
+                        accent: '#8b5cf6',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'gradient': 'gradient 8s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .slider-container {
+            perspective: 1000px;
+        }
+        
+        .slider-card {
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        
+        .slider-card:hover {
+            transform: rotateY(10deg) rotateX(5deg) scale(1.05);
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: float 20s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="glass-effect bg-white/90 backdrop-blur-md shadow-lg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.location.href='index.html'">
+                        <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mr-3 animate-pulse-slow">
+                            <i class="fas fa-lightbulb text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold gradient-text">CreativeiDEA</h1>
+                            <p class="text-xs text-gray-500">Imagine • Create • Inspire</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="index.html" class="text-gray-700 hover:text-secondary font-medium transition-colors">Home</a>
+                        <a href="about.html" class="text-gray-700 hover:text-secondary font-medium transition-colors">About</a>
+                        <a href="services.html" class="text-gray-700 hover:text-secondary font-medium transition-colors">Services</a>
+                        <a href="pricing.html" class="text-gray-700 hover:text-secondary font-medium transition-colors">Pricing</a>
+                        <a href="contact.html" class="bg-gradient-to-r from-secondary to-accent text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all">
+                            Contact Us
+                        </a>
+                    </div>
+                    
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden flex items-center">
+                        <button id="mobile-menu-btn" class="text-gray-700 hover:text-secondary focus:outline-none">
+                            <i class="fas fa-bars text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+                <a href="index.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Home</a>
+                <a href="about.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">About</a>
+                <a href="services.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Services</a>
+                <a href="pricing.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Pricing</a>
+                <a href="contact.html" class="block px-4 py-3 text-secondary font-semibold">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Advanced Slider -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Animated Background Shapes -->
+        <div class="floating-shapes w-96 h-96 bg-purple-400 top-20 -left-20"></div>
+        <div class="floating-shapes w-72 h-72 bg-orange-400 bottom-20 -right-20" style="animation-delay: 5s;"></div>
+        <div class="floating-shapes w-80 h-80 bg-blue-400 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" style="animation-delay: 10s;"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="text-center lg:text-left reveal active">
+                    <div class="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-secondary to-accent text-white rounded-full text-sm font-semibold animate-bounce-slow">
+                        🚀 5+ Years Experience
+                    </div>
+                    <h1 class="text-5xl lg:text-7xl font-bold leading-tight mb-6">
+                        We turn your <br>
+                        <span class="gradient-text animate-gradient bg-clip-text text-transparent bg-[length:200%_200%]">idea</span> into reality
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        Creative Idea helps Sri Lankan businesses go from a spark of an idea to a fast, modern website — with a simple admin panel.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="contact.html" class="px-8 py-4 bg-gradient-to-r from-secondary to-accent text-white rounded-full font-bold text-lg hover:shadow-2xl transform hover:scale-105 transition-all flex items-center justify-center gap-2">
+                            <i class="fas fa-rocket"></i>
+                            Get Free Quote
+                        </a>
+                        <a href="https://wa.me/94725491688" target="_blank" class="px-8 py-4 bg-green-500 text-white rounded-full font-bold text-lg hover:shadow-2xl transform hover:scale-105 transition-all flex items-center justify-center gap-2">
+                            <i class="fab fa-whatsapp"></i>
+                            Chat on WhatsApp
+                        </a>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-6 mt-12">
+                        <div class="text-center lg:text-left">
+                            <div class="text-3xl font-bold gradient-text">5+</div>
+                            <div class="text-gray-600 text-sm">Years Experience</div>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <div class="text-3xl font-bold gradient-text">200+</div>
+                            <div class="text-gray-600 text-sm">Projects Done</div>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <div class="text-3xl font-bold gradient-text">24/7</div>
+                            <div class="text-gray-600 text-sm">Support</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Content - Creative Slider -->
+                <div class="relative h-[600px] slider-container reveal">
+                    <div id="hero-slider" class="relative w-full h-full">
+                        <!-- Slide 1 -->
+                        <div class="slider-card absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl shadow-2xl p-8 flex flex-col justify-center items-center text-white" data-slide="0">
+                            <i class="fas fa-code text-7xl mb-6 animate-float"></i>
+                            <h3 class="text-3xl font-bold mb-4">Web Development</h3>
+                            <p class="text-center">Fast, reliable web apps built with modern technology</p>
+                        </div>
+                        
+                        <!-- Slide 2 -->
+                        <div class="slider-card absolute inset-0 bg-gradient-to-br from-orange-400 to-red-500 rounded-3xl shadow-2xl p-8 flex flex-col justify-center items-center text-white opacity-0 pointer-events-none" data-slide="1">
+                            <i class="fas fa-paint-brush text-7xl mb-6 animate-float" style="animation-delay: 1s;"></i>
+                            <h3 class="text-3xl font-bold mb-4">Graphic Design</h3>
+                            <p class="text-center">Logos, brochures and banners that stand out</p>
+                        </div>
+                        
+                        <!-- Slide 3 -->
+                        <div class="slider-card absolute inset-0 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-3xl shadow-2xl p-8 flex flex-col justify-center items-center text-white opacity-0 pointer-events-none" data-slide="2">
+                            <i class="fas fa-chart-line text-7xl mb-6 animate-float" style="animation-delay: 2s;"></i>
+                            <h3 class="text-3xl font-bold mb-4">SEO & Marketing</h3>
+                            <p class="text-center">Get found on Google and grow your business</p>
+                        </div>
+                        
+                        <!-- Slide 4 -->
+                        <div class="slider-card absolute inset-0 bg-gradient-to-br from-green-400 to-emerald-600 rounded-3xl shadow-2xl p-8 flex flex-col justify-center items-center text-white opacity-0 pointer-events-none" data-slide="3">
+                            <i class="fas fa-server text-7xl mb-6 animate-float" style="animation-delay: 3s;"></i>
+                            <h3 class="text-3xl font-bold mb-4">Web Hosting</h3>
+                            <p class="text-center">Secure, reliable hosting with 24/7 support</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Slider Controls -->
+                    <div class="absolute -bottom-16 left-1/2 transform -translate-x-1/2 flex gap-3">
+                        <button class="slider-dot w-4 h-4 rounded-full bg-purple-500 transition-all" data-index="0"></button>
+                        <button class="slider-dot w-4 h-4 rounded-full bg-gray-300 transition-all" data-index="1"></button>
+                        <button class="slider-dot w-4 h-4 rounded-full bg-gray-300 transition-all" data-index="2"></button>
+                        <button class="slider-dot w-4 h-4 rounded-full bg-gray-300 transition-all" data-index="3"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-2xl text-gray-400"></i>
+        </div>
+    </section>
+
+    <!-- Services Preview Section -->
+    <section class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold mb-4">Everything your business needs <span class="gradient-text">online</span></h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">In one place - from design to development, marketing to support</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="group p-8 bg-gray-50 rounded-2xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 reveal">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-laptop-code text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Web Design</h3>
+                    <p class="text-gray-600 mb-4">Clean, mobile-first designs built around what your customers actually need to see first.</p>
+                    <a href="services.html" class="text-secondary font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="group p-8 bg-gray-50 rounded-2xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 reveal" style="transition-delay: 100ms;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-code text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Web Development</h3>
+                    <p class="text-gray-600 mb-4">Fast, reliable web apps built with modern, well-supported technology.</p>
+                    <a href="services.html" class="text-secondary font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="group p-8 bg-gray-50 rounded-2xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 reveal" style="transition-delay: 200ms;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-palette text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Graphic Design</h3>
+                    <p class="text-gray-600 mb-4">Logos, brochures and banners that make your brand instantly recognisable.</p>
+                    <a href="services.html" class="text-secondary font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="group p-8 bg-gray-50 rounded-2xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 reveal">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-search text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">SEO & SMM</h3>
+                    <p class="text-gray-600 mb-4">Get found on Google and stay active on social media with packages that fit your budget.</p>
+                    <a href="services.html" class="text-secondary font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="group p-8 bg-gray-50 rounded-2xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 reveal" style="transition-delay: 100ms;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-server text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Web Hosting</h3>
+                    <p class="text-gray-600 mb-4">Secure, reliable hosting with 24/7 support — free for the first year with any web package.</p>
+                    <a href="services.html" class="text-secondary font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="group p-8 bg-gray-50 rounded-2xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 reveal" style="transition-delay: 200ms;">
+                    <div class="w-16 h-16 bg-gradient-to-br from-pink-400 to-pink-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-headset text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">On-going Support</h3>
+                    <p class="text-gray-600 mb-4">We keep things running smoothly long after launch, so you can focus on your business.</p>
+                    <a href="services.html" class="text-secondary font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Learn More <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="services.html" class="inline-block px-8 py-4 border-2 border-secondary text-secondary rounded-full font-bold text-lg hover:bg-secondary hover:text-white transition-all">
+                    View All Services
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-orange-500 rounded-full filter blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl font-bold mb-4">Our Smart Process</h2>
+                <p class="text-gray-300 text-lg">From first idea to launch day</p>
+            </div>
+            
+            <div class="grid md:grid-cols-5 gap-8">
+                <div class="text-center reveal group">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                        <span class="text-3xl font-bold">1</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Discovery</h3>
+                    <p class="text-gray-400 text-sm">Understanding your vision and goals</p>
+                </div>
+                
+                <div class="text-center reveal group" style="transition-delay: 100ms;">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                        <span class="text-3xl font-bold">2</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Strategy</h3>
+                    <p class="text-gray-400 text-sm">Planning the perfect approach</p>
+                </div>
+                
+                <div class="text-center reveal group" style="transition-delay: 200ms;">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                        <span class="text-3xl font-bold">3</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Design</h3>
+                    <p class="text-gray-400 text-sm">Creating stunning visuals</p>
+                </div>
+                
+                <div class="text-center reveal group" style="transition-delay: 300ms;">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                        <span class="text-3xl font-bold">4</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Development</h3>
+                    <p class="text-gray-400 text-sm">Building with modern technology</p>
+                </div>
+                
+                <div class="text-center reveal group" style="transition-delay: 400ms;">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-orange-400 to-orange-600 rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                        <span class="text-3xl font-bold">5</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Launch</h3>
+                    <p class="text-gray-400 text-sm">Going live with support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 gradient-bg relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 reveal">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Ready to make your idea a reality?</h2>
+            <p class="text-xl text-white mb-8">Tell us about your project and we'll get back to you with a free, no-obligation quote.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="contact.html" class="px-8 py-4 bg-white text-gray-900 rounded-full font-bold text-lg hover:shadow-2xl transform hover:scale-105 transition-all">
+                    Start Your Project
+                </a>
+                <a href="https://m.me/creativeidea" target="_blank" class="px-8 py-4 bg-blue-600 text-white rounded-full font-bold text-lg hover:shadow-2xl transform hover:scale-105 transition-all flex items-center justify-center gap-2">
+                    <i class="fab fa-facebook-messenger"></i>
+                    Chat on Messenger
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-lightbulb text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">CreativeiDEA</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">Imagine • Create • Inspire</p>
+                    <p class="text-gray-400 text-sm">Turning ideas into reality with modern web solutions.</p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="pricing.html" class="text-gray-400 hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Web Design</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Web Development</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">SEO & Marketing</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Graphic Design</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact Us</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-secondary mt-1"></i>
+                            <span class="text-gray-400">Colombo, Sri Lanka</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-secondary"></i>
+                            <a href="mailto:info@creativeidea.lk" class="text-gray-400 hover:text-white transition-colors">info@creativeidea.lk</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fab fa-whatsapp text-secondary"></i>
+                            <a href="https://wa.me/94725491688" target="_blank" class="text-gray-400 hover:text-white transition-colors">+94 72 549 1688</a>
+                        </li>
+                    </ul>
+                    <div class="flex gap-4 mt-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-secondary transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-secondary transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-secondary transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-secondary transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-gray-400 text-sm">&copy; 2026 CreativeiDEA. All rights reserved.</p>
+                    <div class="flex gap-6">
+                        <a href="terms.html" class="text-gray-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
+                        <a href="privacy.html" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
+        <a href="https://m.me/creativeidea" target="_blank" class="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-2xl transform hover:scale-110 transition-all animate-bounce-slow" style="animation-delay: 1s;">
+            <i class="fab fa-facebook-messenger text-2xl"></i>
+        </a>
+        <a href="https://wa.me/94725491688" target="_blank" class="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-2xl transform hover:scale-110 transition-all animate-bounce-slow">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+        
+        // Advanced Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slider-card');
+        const dots = document.querySelectorAll('.slider-dot');
+        const totalSlides = slides.length;
+        
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.remove('opacity-0', 'pointer-events-none');
+                    slide.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
+                } else {
+                    slide.classList.add('opacity-0', 'pointer-events-none');
+                    slide.style.transform = 'rotateY(180deg) rotateX(10deg) scale(0.8)';
+                }
+            });
+            
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.remove('bg-gray-300');
+                    dot.classList.add('bg-purple-500', 'scale-125');
+                } else {
+                    dot.classList.add('bg-gray-300');
+                    dot.classList.remove('bg-purple-500', 'scale-125');
+                }
+            });
+            
+            currentSlide = index;
+        }
+        
+        function nextSlide() {
+            const next = (currentSlide + 1) % totalSlides;
+            showSlide(next);
+        }
+        
+        // Auto advance slider
+        setInterval(nextSlide, 4000);
+        
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showSlide(index));
+        });
+        
+        // Initialize slider
+        showSlide(0);
+        
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Trigger once on load
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

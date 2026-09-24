@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - CreativeiDEA | Web Design, Development & More</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a',
+                        secondary: '#f97316',
+                        accent: '#8b5cf6',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Navigation (Same as other pages) -->
+    <nav class="fixed w-full z-50" id="navbar">
+        <div class="glass-effect bg-white/90 backdrop-blur-md shadow-lg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.location.href='index.html'">
+                        <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-lightbulb text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold gradient-text">CreativeiDEA</h1>
+                            <p class="text-xs text-gray-500">Imagine • Create • Inspire</p>
+                        </div>
+                    </div>
+                    
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="index.html" class="text-gray-700 hover:text-secondary font-medium">Home</a>
+                        <a href="about.html" class="text-gray-700 hover:text-secondary font-medium">About</a>
+                        <a href="services.html" class="text-secondary font-medium">Services</a>
+                        <a href="pricing.html" class="text-gray-700 hover:text-secondary font-medium">Pricing</a>
+                        <a href="contact.html" class="bg-gradient-to-r from-secondary to-accent text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all">Contact Us</a>
+                    </div>
+                    
+                    <div class="md:hidden">
+                        <button id="mobile-menu-btn" class="text-gray-700"><i class="fas fa-bars text-2xl"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+                <a href="index.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Home</a>
+                <a href="about.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">About</a>
+                <a href="services.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Services</a>
+                <a href="pricing.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Pricing</a>
+                <a href="contact.html" class="block px-4 py-3 text-secondary font-semibold">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-purple-900 to-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-5xl font-bold mb-6">Our Services</h1>
+            <p class="text-xl text-gray-300">Everything your business needs to succeed online</p>
+        </div>
+    </section>
+
+    <!-- Services Detail -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <!-- Web Design -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20 reveal">
+                <div>
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-laptop-code text-white text-3xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4">Web Design</h2>
+                    <p class="text-gray-600 mb-4">Clean, mobile-first designs built around what your customers actually need to see first.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Responsive & Mobile-First Design</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Modern UI/UX Principles</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Brand-Aligned Visuals</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Fast Loading Pages</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 rounded-2xl p-8 shadow-lg">
+                    <i class="fas fa-laptop-code text-9xl text-blue-400 opacity-50"></i>
+                </div>
+            </div>
+
+            <!-- Web Development -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20 reveal">
+                <div class="order-2 lg:order-1 bg-gray-50 rounded-2xl p-8 shadow-lg">
+                    <i class="fas fa-code text-9xl text-purple-400 opacity-50"></i>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-code text-white text-3xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4">Web Development</h2>
+                    <p class="text-gray-600 mb-4">Fast, reliable web apps built with modern, well-supported technology — not last decade's plugins.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Modern Frameworks (React, Vue, Laravel)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Clean, Maintainable Code</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Database Integration</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>API Development</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Graphic Design -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20 reveal">
+                <div>
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-palette text-white text-3xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4">Graphic Design</h2>
+                    <p class="text-gray-600 mb-4">Logos, brochures and banners that make your brand instantly recognisable.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Logo Design</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Brand Identity</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Marketing Materials</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Social Media Graphics</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 rounded-2xl p-8 shadow-lg">
+                    <i class="fas fa-palette text-9xl text-orange-400 opacity-50"></i>
+                </div>
+            </div>
+
+            <!-- SEO & SMM -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20 reveal">
+                <div class="order-2 lg:order-1 bg-gray-50 rounded-2xl p-8 shadow-lg">
+                    <i class="fas fa-chart-line text-9xl text-green-400 opacity-50"></i>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-search text-white text-3xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4">SEO & Social Media Marketing</h2>
+                    <p class="text-gray-600 mb-4">Get found on Google and stay active on social media with packages that fit your budget.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Search Engine Optimization</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Social Media Management</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Content Strategy</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Analytics & Reporting</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Web Hosting -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20 reveal">
+                <div>
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-400 to-red-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-server text-white text-3xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4">Web Hosting</h2>
+                    <p class="text-gray-600 mb-4">Secure, reliable hosting with 24/7 support — free for the first year with any web package.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>99.9% Uptime Guarantee</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>SSL Certificates</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Daily Backups</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Free 1st Year with Web Package</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 rounded-2xl p-8 shadow-lg">
+                    <i class="fas fa-server text-9xl text-red-400 opacity-50"></i>
+                </div>
+            </div>
+
+            <!-- Ongoing Support -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center reveal">
+                <div class="order-2 lg:order-1 bg-gray-50 rounded-2xl p-8 shadow-lg">
+                    <i class="fas fa-headset text-9xl text-pink-400 opacity-50"></i>
+                </div>
+                <div class="order-1 lg:order-2">
+                    <div class="w-16 h-16 bg-gradient-to-br from-pink-400 to-pink-600 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-headset text-white text-3xl"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold mb-4">On-going Support</h2>
+                    <p class="text-gray-600 mb-4">We keep things running smoothly long after launch, so you can focus on your business.</p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>24/7 Technical Support</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Regular Updates</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Security Monitoring</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Content Updates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 gradient-bg">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-white mb-6">Ready to get started?</h2>
+            <a href="contact.html" class="inline-block px-8 py-4 bg-white text-gray-900 rounded-full font-bold text-lg hover:shadow-2xl transform hover:scale-105 transition-all">
+                Request a Quote
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer (Same as other pages) -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="border-t border-gray-800 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2026 CreativeiDEA. All rights reserved.</p>
+                <div class="mt-4 space-x-6">
+                    <a href="terms.html" class="text-gray-400 hover:text-white">Terms & Conditions</a>
+                    <a href="privacy.html" class="text-gray-400 hover:text-white">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        const revealElements = document.querySelectorAll('.reveal');
+        window.addEventListener('scroll', () => {
+            revealElements.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

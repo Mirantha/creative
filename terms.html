@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreativeiDEA - Imagine â€¢ Create â€¢ Inspire | Web Design & Development Sri Lanka</title>
+    <meta name="description" content="Creative Idea helps Sri Lankan businesses go from a spark of an idea to a fast, modern website. Web design, development, SEO, and more.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e3a8a',
+                        secondary: '#f97316',
+                        accent: '#8b5cf6',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'gradient': 'gradient 8s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .slider-container {
+            perspective: 1000px;
+        }
+        
+        .slider-card {
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        
+        .slider-card:hover {
+            transform: rotateY(10deg) rotateX(5deg) scale(1.05);
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: float 20s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 overflow-x-hidden">
+       <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="glass-effect bg-white/90 backdrop-blur-md shadow-lg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <!-- Logo -->
+                    <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.location.href='index.html'">
+                        <div class="w-12 h-12 gradient-bg rounded-lg flex items-center justify-center mr-3 animate-pulse-slow">
+                            <i class="fas fa-lightbulb text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-2xl font-bold gradient-text">CreativeiDEA</h1>
+                            <p class="text-xs text-gray-500">Imagine â€¢ Create â€¢ Inspire</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="index.html" class="text-gray-700 hover:text-secondary font-medium transition-colors">Home</a>
+                        <a href="about.html" class="text-gray-700 hover:text-secondary font-medium transition-colors">About</a>
+                        <a href="services.html" class="text-gray-700 hover:text-secondary font-medium transition-colors">Services</a>
+                        <a href="pricing.html" class="text-gray-700 hover:text-secondary font-medium transition-colors">Pricing</a>
+                        <a href="contact.html" class="bg-gradient-to-r from-secondary to-accent text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all">
+                            Contact Us
+                        </a>
+                    </div>
+                    
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden flex items-center">
+                        <button id="mobile-menu-btn" class="text-gray-700 hover:text-secondary focus:outline-none">
+                            <i class="fas fa-bars text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+                <a href="index.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Home</a>
+                <a href="about.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">About</a>
+                <a href="services.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Services</a>
+                <a href="pricing.html" class="block px-4 py-3 text-gray-700 hover:bg-gray-100">Pricing</a>
+                <a href="contact.html" class="block px-4 py-3 text-secondary font-semibold">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+    <div class="max-w-4xl mx-auto px-4 py-20">
+        <h1 class="text-4xl font-bold text-center mb-8 gradient-text">Terms & Conditions</h1>
+        <div class="bg-white rounded-2xl shadow-lg p-8 space-y-6">
+            <section>
+                <h2 class="text-2xl font-bold mb-4">1. Agreement to Terms</h2>
+                <p class="text-gray-600">By accessing or using CreativeiDEA's services, you agree to be bound by these Terms and Conditions. If you disagree with any part of the terms, you may not access our services.</p>
+            </section>
+            
+            <section>
+                <h2 class="text-2xl font-bold mb-4">2. Services</h2>
+                <p class="text-gray-600">CreativeiDEA provides web design, development, hosting, and digital marketing services. We reserve the right to modify, suspend, or discontinue any part of our services at any time.</p>
+            </section>
+            
+            <section>
+                <h2 class="text-2xl font-bold mb-4">3. Payment Terms</h2>
+                <p class="text-gray-600">Payment terms are as specified in your service agreement. A deposit may be required before work begins. All fees are in Sri Lankan Rupees (LKR) unless otherwise stated.</p>
+            </section>
+            
+            <section>
+                <h2 class="text-2xl font-bold mb-4">4. Intellectual Property</h2>
+                <p class="text-gray-600">Upon full payment, clients receive ownership of the final delivered work. CreativeiDEA retains the right to display the work in our portfolio and promotional materials.</p>
+            </section>
+            
+            <section>
+                <h2 class="text-2xl font-bold mb-4">5. Limitation of Liability</h2>
+                <p class="text-gray-600">CreativeiDEA shall not be liable for any indirect, incidental, or consequential damages arising from the use of our services.</p>
+            </section>
+            
+            <section>
+                <h2 class="text-2xl font-bold mb-4">6. Contact</h2>
+                <p class="text-gray-600">For questions about these Terms, contact us at info@creativeidea.lk</p>
+            </section>
+            
+            <p class="text-gray-500 text-sm mt-8">Last Updated: January 2024</p>
+        </div>
+    </div>
+     <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-lightbulb text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">CreativeiDEA</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">Imagine â€¢ Create â€¢ Inspire</p>
+                    <p class="text-gray-400 text-sm">Turning ideas into reality with modern web solutions.</p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="pricing.html" class="text-gray-400 hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Web Design</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Web Development</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">SEO & Marketing</a></li>
+                        <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors">Graphic Design</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Contact Us</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-secondary mt-1"></i>
+                            <span class="text-gray-400">Colombo, Sri Lanka</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-envelope text-secondary"></i>
+                            <a href="mailto:info@creativeidea.lk" class="text-gray-400 hover:text-white transition-colors">info@creativeidea.lk</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fab fa-whatsapp text-secondary"></i>
+                            <a href="https://wa.me/94725491688" target="_blank" class="text-gray-400 hover:text-white transition-colors">+94 77 123 4567</a>
+                        </li>
+                    </ul>
+                    <div class="flex gap-4 mt-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-secondary transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-secondary transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-secondary transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-secondary transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-gray-400 text-sm">&copy; 2026 CreativeiDEA. All rights reserved.</p>
+                    <div class="flex gap-6">
+                        <a href="terms.html" class="text-gray-400 hover:text-white text-sm transition-colors">Terms & Conditions</a>
+                        <a href="privacy.html" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
+        <a href="https://m.me/creativeidea" target="_blank" class="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-2xl transform hover:scale-110 transition-all animate-bounce-slow" style="animation-delay: 1s;">
+            <i class="fab fa-facebook-messenger text-2xl"></i>
+        </a>
+        <a href="https://wa.me/94725491688" target="_blank" class="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-2xl transform hover:scale-110 transition-all animate-bounce-slow">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+        
+        // Advanced Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slider-card');
+        const dots = document.querySelectorAll('.slider-dot');
+        const totalSlides = slides.length;
+        
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.remove('opacity-0', 'pointer-events-none');
+                    slide.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
+                } else {
+                    slide.classList.add('opacity-0', 'pointer-events-none');
+                    slide.style.transform = 'rotateY(180deg) rotateX(10deg) scale(0.8)';
+                }
+            });
+            
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.remove('bg-gray-300');
+                    dot.classList.add('bg-purple-500', 'scale-125');
+                } else {
+                    dot.classList.add('bg-gray-300');
+                    dot.classList.remove('bg-purple-500', 'scale-125');
+                }
+            });
+            
+            currentSlide = index;
+        }
+        
+        function nextSlide() {
+            const next = (currentSlide + 1) % totalSlides;
+            showSlide(next);
+        }
+        
+        // Auto advance slider
+        setInterval(nextSlide, 4000);
+        
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showSlide(index));
+        });
+        
+        // Initialize slider
+        showSlide(0);
+        
+        // Scroll Reveal Animation
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Trigger once on load
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
